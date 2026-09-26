@@ -15,6 +15,8 @@ test("Popup validations", async({page})=>
     await page.locator("#mousehover").hover();
     const framesPage = page.frameLocator("#courses-iframe");
 
+    // changes fix in hadeer_fixes branch 
+
 });
 
 test("Screenshot & Visual comparision", async({page})=>
