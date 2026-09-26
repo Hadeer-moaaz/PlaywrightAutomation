@@ -1,27 +1,59 @@
 name: Playwright Tests
+
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-    - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npx playwright test --config=playwright.service.config.js --workers=1
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Check Playwright Service URL
+        env:
+          PLAYWRIGHT_SERVICE_URL: ${{ vars.PLAYWRIGHT_SERVICE_URL }}
+        run: |
+          if [ -z "$PLAYWRIGHT_SERVICE_URL" ]; then
+            echo "::error::PLAYWRIGHT_SERVICE_URL is not set"
+            exit 1
+          fi
+
+          echo "PLAYWRIGHT_SERVICE_URL is configured"
+          echo "Starts with https://: ${PLAYWRIGHT_SERVICE_URL#https://}" | sed 's/./*/g'
+
+      - name: Debug Playwright Service URL
+        env:
+          PLAYWRIGHT_SERVICE_URL: ${{ vars.PLAYWRIGHT_SERVICE_URL }}
+        run: |
+          echo "Protocol: ${PLAYWRIGHT_SERVICE_URL%%:*}"
+          echo "Length: ${#PLAYWRIGHT_SERVICE_URL}"
+          echo "Starts with wss: ${PLAYWRIGHT_SERVICE_URL#wss://}"
+
+      - name: Run Playwright tests
+        run: npx playwright test --config=playwright.service.config.js --workers=1
+        env:
+          PLAYWRIGHT_SERVICE_URL: ${{ secrets.PLAYWRIGHT_SERVICE_URL }}
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

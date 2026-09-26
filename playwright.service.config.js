@@ -18,21 +18,6 @@ export default defineConfig(
     ],
   }
 );
-// export default defineConfig(
-//   config,
-//   createAzurePlaywrightConfig(config, {
-//     exposeNetwork: '<loopback>',
-//     connectTimeout: 3 * 60 * 1000, // 3 minutes
-//     os: ServiceOS.LINUX,
-//     credential: new DefaultAzureCredential(),
-//   }),
-//   {
-  
-//     reporter: [
-//       ["html", { open: "never" }],
-//       ["@azure/playwright/reporter"],
-//     ],
-//   }
-// );
+
 
 
