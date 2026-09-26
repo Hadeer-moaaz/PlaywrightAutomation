@@ -17,7 +17,7 @@ test("Popup validations", async({page})=>
 
 });
 
-test.only("Screenshot & Visual comparision", async({page})=>
+test("Screenshot & Visual comparision", async({page})=>
 {
     await page.goto(BASE_URL, { waitUntil: 'domcontentloaded' });
     const showAndHide = page.locator("#displayed-text");
