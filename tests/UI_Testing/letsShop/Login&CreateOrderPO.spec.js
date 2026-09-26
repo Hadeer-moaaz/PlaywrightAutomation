@@ -41,6 +41,7 @@ await orderHistoryPage.getOrderId();
 
 });
 
+}
 
 customtest(`@web Client App login`, async ({page,testDataForOrder})=>
 {
@@ -58,4 +59,3 @@ customtest(`@web Client App login`, async ({page,testDataForOrder})=>
   await cartPage.VerifyProductIsDisplayed(testDataForOrder.productName);
   await cartPage.Checkout();
 });
-}
