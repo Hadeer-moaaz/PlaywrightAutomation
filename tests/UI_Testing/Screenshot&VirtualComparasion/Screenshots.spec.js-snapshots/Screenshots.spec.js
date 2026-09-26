@@ -17,7 +17,7 @@ test("Popup validations", async({page})=>
 
 });
 
-test.skip("Screenshot & Visual comparision", async({page})=>
+test("Screenshot & Visual comparision", async({page})=>
 {
     await page.goto(BASE_URL, { waitUntil: 'domcontentloaded' });
     const showAndHide = page.locator("#displayed-text");
@@ -31,7 +31,7 @@ test.skip("Screenshot & Visual comparision", async({page})=>
 });
 
 //screenshot -store -> screenshot ->
-test('visual', async({page})=>
+test.skip('visual', async({page})=>
 {
     await page.goto("https://google.com/", { waitUntil: 'domcontentloaded' });
     expect(await page.screenshot()).toMatchSnapshot('landing.png');
