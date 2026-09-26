@@ -39,15 +39,18 @@ test('Upload Download excel Validations', async ({page})=>
 
     const TextSearch = 'Mango';
     const updateValue = '350';
-    const filePath = "C:/Users/ShabaanH3/downloads/download.xlsx";
+    const filePath = "C:/Users/Hp/Downloads/download";
 
     await page.goto("https://rahulshettyacademy.com/upload-download-test/index.html");
     const downloadPromise = page.waitForEvent('download');
     await page.getByRole('button', {name: 'Download'}).click();
-    await downloadPromise;
-    WriteExcel(TextSearch, updateValue, {rowChange:0,colChange:2} ,filePath);
+    const download = await downloadPromise;
+    await download.saveAs(filePath); // <-- explicitly save it to your chosen path
+
+    // await downloadPromise;
+    await WriteExcel(TextSearch, updateValue, {rowChange:0,colChange:2} ,filePath);
     await page.locator('#fileinput').click();
-    await page.locator('#fileinput').setInputFiles("C:/Users/ShabaanH3/downloads/download.xlsx");
+    await page.locator('#fileinput').setInputFiles("C:/Users/Hp/Downloads/download");
     const textLocator = page.getByText(TextSearch);
     const desierdRow = page.getByRole('row').filter({has: textLocator});
     expect(desierdRow.locator('#cell-4-undefined')).toContainText(updateValue);

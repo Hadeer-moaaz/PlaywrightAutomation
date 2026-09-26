@@ -31,16 +31,18 @@ function readExcel(worksheet, searchText) {
 test('Upload Download excel Validations', async ({page})=> 
 {
 
+    const filePath = "C:/Users/Hp/Downloads/download";
     const textSearch = 'Mango';
     const updateValue = '350';
 
     await page.goto('https://rahulshettyacademy.com/upload-download-test/index.html');
 
 
-    const download = page.waitForEvent('download');
+    const downloadPromise = page.waitForEvent('download');
     await page.getByRole('button', { name: 'Download' }).click();
-    await download;
-    const filePath = "C:/Users/ShabaanH3/downloads/download.xlsx";
+    const download = await downloadPromise; // now this is the actual Download object
+    await download.saveAs(filePath);
+
 
     await writeExcelTest(textSearch, updateValue, { rowChange: 0, colChange: 2 }, filePath);
     await page.locator('#fileinput').setInputFiles(filePath);
