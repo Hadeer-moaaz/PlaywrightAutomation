@@ -2,7 +2,22 @@
   "name": "playwrightautomation",
   "version": "1.0.0",
   "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/Hadeer-moaaz/PlaywrightAutomation#readme",
+  "bugs": {
+    "url": "https://github.com/Hadeer-moaaz/PlaywrightAutomation/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hadeer-moaaz/PlaywrightAutomation.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
   "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
     "regression": "npx playwright test --reporter=line,allure-playwright",
     "webTests": "npx playwright test --grep \"@web\" --reporter=line,allure-playwright",
@@ -11,10 +26,9 @@
     "cucumberRegression": "npx cucumber-js --tags \"@Regression\" --retry 1 --exit --format html:cucumber-report.html",
     "cucumberValidation": "npx cucumber-js --tags \"@Validation\" --retry 1 --exit --format html:cucumber-report.html"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "dependencies": {
+    "exceljs": "^4.4.0"
+  },
   "devDependencies": {
     "@azure/identity": "^4.13.3",
     "@azure/playwright": "^1.1.6",
@@ -23,8 +37,5 @@
     "@types/node": "^26.1.1",
     "allure-playwright": "^3.12.2",
     "typescript": "^7.0.2"
-  },
-  "dependencies": {
-    "exceljs": "^4.4.0"
   }
 }
