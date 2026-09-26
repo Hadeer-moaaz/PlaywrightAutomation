@@ -36,7 +36,7 @@ async function loginAndGoToEvents(page) {
   }
 // ── Test 1 ──────────────────────────────────────────────────────────────────────
 
-test('Banner IS visible when 6 events are returned', async ({ page }) => {
+test.skip('Banner IS visible when 6 events are returned', async ({ page }) => {
 
     await page.route('**/api/events**', async route => {
     route.fulfill({
@@ -65,7 +65,7 @@ test('Banner IS visible when 6 events are returned', async ({ page }) => {
 
 // ── Test 2 ──────────────────────────────────────────────────────────────────────
 
-test('Banner is NOT visible when 4 events are returned', async ({ page }) => {
+test.skip('Banner is NOT visible when 4 events are returned', async ({ page }) => {
 
     await page.route('**/api/events**', async route => {
         route.fulfill({

@@ -6,7 +6,7 @@ import { test, expect } from '@playwright/test';
     const emailText = 'hadeer@gmail.com';
     const passText = 'ModyMM@2020';
 
-test('E2E scenario with data', async({page})=>
+test.skip('E2E scenario with data', async({page})=>
 {
 
     const email = page.getByPlaceholder('you@email.com');

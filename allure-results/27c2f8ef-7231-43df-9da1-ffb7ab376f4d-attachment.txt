@@ -1,0 +1,125 @@
+  pw:api => browserType.launch started +0ms
+  pw:api <= browserType.launch succeeded +3s
+  pw:api => browser.newContext started +5ms
+  pw:api <= browser.newContext succeeded +53ms
+  pw:api => browserContext.newPage started +15ms
+  pw:api <= browserContext.newPage succeeded +2s
+  pw:api => page.goto started +5ms
+  pw:api navigating to "https://rahulshettyacademy.com/client/#/auth/login", waiting until "load" +169ms
+  pw:api   "commit" event fired +516ms
+  pw:api   navigated to "https://rahulshettyacademy.com/client/#/auth/login" +2ms
+  pw:api   "domcontentloaded" event fired +1s
+  pw:api   navigated to "https://rahulshettyacademy.com/client/#/auth/login" +217ms
+  pw:api   "load" event fired +2s
+  pw:api <= page.goto succeeded +36ms
+  pw:api => page.title started +14ms
+  pw:api <= page.title succeeded +19ms
+  pw:api => Expect "toHaveTitle" started +61ms
+  pw:api Expect "toHaveTitle" with timeout 5000ms +35ms
+  pw:api <= Expect "toHaveTitle" succeeded +125ms
+  pw:api => locator.click started +17ms
+  pw:api waiting for locator('a.btn1') +73ms
+  pw:api   locator resolved to <a class="btn1" _ngcontent-iqb-c31="" href="#/auth/register" routerlink="/auth/register">Register</a> +48ms
+  pw:api attempting click action +23ms
+  pw:api   waiting for element to be visible, enabled and stable +2ms
+  pw:api   element is visible, enabled and stable +44ms
+  pw:api   scrolling into view if needed +1ms
+  pw:api   "networkidle" event fired +4ms
+  pw:api   done scrolling +15ms
+  pw:api   performing click action +89ms
+  pw:api   navigated to "https://rahulshettyacademy.com/client/#/auth/register" +83ms
+  pw:api   click action done +127ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +7ms
+  pw:api <= locator.click succeeded +16ms
+  pw:api => locator.fill started +8ms
+  pw:api waiting for locator('#firstName') +13ms
+  pw:api   locator resolved to <input id="firstName" type="firstName" _ngcontent-iqb-c32="" placeholder="First Name" formcontrolname="firstName" class="form-control ng-untouched ng-pristine ng-invalid"/> +14ms
+  pw:api   fill("Suzy") +5ms
+  pw:api attempting fill action +1ms
+  pw:api   waiting for element to be visible, enabled and editable +11ms
+  pw:api <= locator.fill succeeded +171ms
+  pw:api => locator.fill started +4ms
+  pw:api waiting for locator('#lastName') +59ms
+  pw:api   locator resolved to <input id="lastName" type="lastName" _ngcontent-iqb-c32="" placeholder="Last Name" formcontrolname="lastName" class="form-control ng-untouched ng-pristine ng-valid"/> +57ms
+  pw:api   fill("Roshdy") +16ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +32ms
+  pw:api <= locator.fill succeeded +184ms
+  pw:api => locator.fill started +2ms
+  pw:api waiting for locator('#userEmail') +23ms
+  pw:api   locator resolved to <input type="email" id="userEmail" _ngcontent-iqb-c32="" formcontrolname="userEmail" placeholder="email@example.com" class="form-control ng-untouched ng-pristine ng-invalid"/> +86ms
+  pw:api   fill("SuzyRoshdy6@gamil.com") +116ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +10ms
+  pw:api <= locator.fill succeeded +268ms
+  pw:api => locator.fill started +3ms
+  pw:api waiting for locator('#userMobile') +15ms
+  pw:api   locator resolved to <input type="text" id="userMobile" _ngcontent-iqb-c32="" formcontrolname="userMobile" placeholder="enter your number" class="form-control ng-untouched ng-pristine ng-invalid"/> +24ms
+  pw:api   fill("1234567890") +15ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +15ms
+  pw:api <= locator.fill succeeded +58ms
+  pw:api => locator.click started +6ms
+  pw:api waiting for locator('[value="Female"]') +14ms
+  pw:api   locator resolved to <input type="radio" value="Female" _ngcontent-iqb-c32="" formcontrolname="gender" class="mt-3 ng-untouched ng-pristine ng-valid"/> +29ms
+  pw:api attempting click action +8ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +37ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +20ms
+  pw:api   performing click action +32ms
+  pw:api   click action done +64ms
+  pw:api   waiting for scheduled navigations to finish +1ms
+  pw:api   navigations have finished +3ms
+  pw:api <= locator.click succeeded +10ms
+  pw:api => locator.fill started +2ms
+  pw:api waiting for locator('#userPassword') +11ms
+  pw:api   locator resolved to <input type="password" id="userPassword" _ngcontent-iqb-c32="" placeholder="Passsword" formcontrolname="userPassword" class="form-control ng-untouched ng-pristine ng-invalid"/> +15ms
+  pw:api   fill("Dede@2020") +5ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +7ms
+  pw:api <= locator.fill succeeded +87ms
+  pw:api => locator.fill started +4ms
+  pw:api waiting for locator('#confirmPassword') +21ms
+  pw:api   locator resolved to <input type="password" id="confirmPassword" _ngcontent-iqb-c32="" placeholder="Confirm Passsword" formcontrolname="confirmPassword" class="form-control ng-untouched ng-pristine ng-invalid"/> +30ms
+  pw:api   fill("Dede@2020") +13ms
+  pw:api attempting fill action +1ms
+  pw:api   waiting for element to be visible, enabled and editable +14ms
+  pw:api <= locator.fill succeeded +56ms
+  pw:api => locator.click started +7ms
+  pw:api waiting for locator('[formcontrolname="required"]') +11ms
+  pw:api   locator resolved to <input type="checkbox" _ngcontent-iqb-c32="" formcontrolname="required" class="ng-untouched ng-pristine ng-invalid"/> +21ms
+  pw:api attempting click action +5ms
+  pw:api   waiting for element to be visible, enabled and stable +5ms
+  pw:api   element is visible, enabled and stable +37ms
+  pw:api   scrolling into view if needed +1ms
+  pw:api   done scrolling +2ms
+  pw:api   performing click action +65ms
+  pw:api   click action done +48ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +3ms
+  pw:api <= locator.click succeeded +16ms
+  pw:api => locator.click started +5ms
+  pw:api waiting for locator('#login') +20ms
+  pw:api   locator resolved to <input id="login" name="login" type="submit" value="Register" _ngcontent-iqb-c32="" class="btn btn-block login-btn"/> +28ms
+  pw:api attempting click action +19ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +40ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +7ms
+  pw:api   performing click action +25ms
+  pw:api   click action done +267ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +4ms
+  pw:api <= locator.click succeeded +6ms
+  pw:api => locator.textContent started +4ms
+  pw:api waiting for locator('[class="headcolor"]') +13ms
+  pw:api <= locator.textContent failed +10s
+  pw:api taking page screenshot +178ms
+  pw:api waiting for fonts to load... +104ms
+  pw:api fonts loaded +145ms
+  pw:api => browserContext.close started +2s
+  pw:api <= browserContext.close succeeded +941ms
+  pw:api => browser.close started +58ms
+  pw:api <= browser.close succeeded +9s

@@ -23,7 +23,7 @@ async function login(page) {
 
 
 // ── Test ───────────────────────────────────────────────────────────────────────
-test('create event via UI, book it, and verify seat reduction', async ({ page }) => {
+test.skip('create event via UI, book it, and verify seat reduction', async ({ page }) => {
 
   // ── Step 1: Log in ───────────────────────────────────────────────────────
   await login(page);

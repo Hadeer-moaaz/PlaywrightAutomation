@@ -1,0 +1,180 @@
+  pw:api => browserType.launch started +0ms
+  pw:api <= browserType.launch succeeded +3s
+  pw:api => browser.newContext started +8ms
+  pw:api <= browser.newContext succeeded +88ms
+  pw:api => browserContext.newPage started +17ms
+  pw:api <= browserContext.newPage succeeded +2s
+  pw:api => page.goto started +6ms
+  pw:api navigating to "https://rahulshettyacademy.com/client/#/auth/login", waiting until "load" +72ms
+  pw:api   "commit" event fired +539ms
+  pw:api   navigated to "https://rahulshettyacademy.com/client/#/auth/login" +0ms
+  pw:api   "domcontentloaded" event fired +1s
+  pw:api   navigated to "https://rahulshettyacademy.com/client/#/auth/login" +197ms
+  pw:api   "load" event fired +749ms
+  pw:api <= page.goto succeeded +15ms
+  pw:api => page.title started +2ms
+  pw:api <= page.title succeeded +9ms
+  pw:api => Expect "toHaveTitle" started +13ms
+  pw:api Expect "toHaveTitle" with timeout 5000ms +8ms
+  pw:api <= Expect "toHaveTitle" succeeded +91ms
+  pw:api => locator.click started +13ms
+  pw:api waiting for locator('a.btn1') +16ms
+  pw:api   locator resolved to <a class="btn1" _ngcontent-nxp-c31="" href="#/auth/register" routerlink="/auth/register">Register</a> +34ms
+  pw:api attempting click action +18ms
+  pw:api   waiting for element to be visible, enabled and stable +2ms
+  pw:api   element is visible, enabled and stable +38ms
+  pw:api   scrolling into view if needed +1ms
+  pw:api   done scrolling +15ms
+  pw:api   performing click action +42ms
+  pw:api   navigated to "https://rahulshettyacademy.com/client/#/auth/register" +52ms
+  pw:api   click action done +63ms
+  pw:api   waiting for scheduled navigations to finish +1ms
+  pw:api   navigations have finished +5ms
+  pw:api <= locator.click succeeded +11ms
+  pw:api => locator.fill started +2ms
+  pw:api waiting for locator('#firstName') +11ms
+  pw:api   locator resolved to <input id="firstName" type="firstName" _ngcontent-nxp-c32="" placeholder="First Name" formcontrolname="firstName" class="form-control ng-untouched ng-pristine ng-invalid"/> +8ms
+  pw:api   fill("Suzy") +5ms
+  pw:api attempting fill action +1ms
+  pw:api   waiting for element to be visible, enabled and editable +13ms
+  pw:api   "networkidle" event fired +12ms
+  pw:api <= locator.fill succeeded +50ms
+  pw:api => locator.fill started +3ms
+  pw:api waiting for locator('#lastName') +28ms
+  pw:api   locator resolved to <input id="lastName" type="lastName" _ngcontent-nxp-c32="" placeholder="Last Name" formcontrolname="lastName" class="form-control ng-untouched ng-pristine ng-valid"/> +19ms
+  pw:api   fill("Roshdy") +10ms
+  pw:api attempting fill action +1ms
+  pw:api   waiting for element to be visible, enabled and editable +10ms
+  pw:api <= locator.fill succeeded +88ms
+  pw:api => locator.fill started +4ms
+  pw:api waiting for locator('#userEmail') +17ms
+  pw:api   locator resolved to <input type="email" id="userEmail" _ngcontent-nxp-c32="" formcontrolname="userEmail" placeholder="email@example.com" class="form-control ng-untouched ng-pristine ng-invalid"/> +22ms
+  pw:api   fill("SuzyRoshdy1790438658074@gmail.com") +18ms
+  pw:api attempting fill action +1ms
+  pw:api   waiting for element to be visible, enabled and editable +19ms
+  pw:api <= locator.fill succeeded +60ms
+  pw:api => locator.fill started +3ms
+  pw:api waiting for locator('#userMobile') +19ms
+  pw:api   locator resolved to <input type="text" id="userMobile" _ngcontent-nxp-c32="" formcontrolname="userMobile" placeholder="enter your number" class="form-control ng-untouched ng-pristine ng-invalid"/> +22ms
+  pw:api   fill("1234567890") +12ms
+  pw:api attempting fill action +1ms
+  pw:api   waiting for element to be visible, enabled and editable +14ms
+  pw:api <= locator.fill succeeded +56ms
+  pw:api => locator.click started +7ms
+  pw:api waiting for locator('[value="Female"]') +17ms
+  pw:api   locator resolved to <input type="radio" value="Female" _ngcontent-nxp-c32="" formcontrolname="gender" class="mt-3 ng-untouched ng-pristine ng-valid"/> +27ms
+  pw:api attempting click action +8ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +39ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +8ms
+  pw:api   performing click action +32ms
+  pw:api   click action done +23ms
+  pw:api   waiting for scheduled navigations to finish +1ms
+  pw:api   navigations have finished +2ms
+  pw:api <= locator.click succeeded +14ms
+  pw:api => locator.fill started +6ms
+  pw:api waiting for locator('#userPassword') +16ms
+  pw:api   locator resolved to <input type="password" id="userPassword" _ngcontent-nxp-c32="" placeholder="Passsword" formcontrolname="userPassword" class="form-control ng-untouched ng-pristine ng-invalid"/> +18ms
+  pw:api   fill("Dede@2020") +43ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +12ms
+  pw:api <= locator.fill succeeded +59ms
+  pw:api => locator.fill started +8ms
+  pw:api waiting for locator('#confirmPassword') +15ms
+  pw:api   locator resolved to <input type="password" id="confirmPassword" _ngcontent-nxp-c32="" placeholder="Confirm Passsword" formcontrolname="confirmPassword" class="form-control ng-untouched ng-pristine ng-invalid"/> +26ms
+  pw:api   fill("Dede@2020") +10ms
+  pw:api attempting fill action +1ms
+  pw:api   waiting for element to be visible, enabled and editable +14ms
+  pw:api <= locator.fill succeeded +53ms
+  pw:api => locator.click started +7ms
+  pw:api waiting for locator('[formcontrolname="required"]') +28ms
+  pw:api   locator resolved to <input type="checkbox" _ngcontent-nxp-c32="" formcontrolname="required" class="ng-untouched ng-pristine ng-invalid"/> +24ms
+  pw:api attempting click action +15ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +33ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +5ms
+  pw:api   performing click action +35ms
+  pw:api   click action done +33ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +4ms
+  pw:api <= locator.click succeeded +19ms
+  pw:api => locator.click started +5ms
+  pw:api waiting for locator('#login') +24ms
+  pw:api   locator resolved to <input id="login" name="login" type="submit" value="Register" _ngcontent-nxp-c32="" class="btn btn-block login-btn"/> +23ms
+  pw:api attempting click action +8ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +39ms
+  pw:api   scrolling into view if needed +0ms
+  pw:api   done scrolling +8ms
+  pw:api   performing click action +32ms
+  pw:api   click action done +67ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +3ms
+  pw:api <= locator.click succeeded +14ms
+  pw:api => locator.textContent started +5ms
+  pw:api waiting for locator('[class="headcolor"]') +16ms
+  pw:api   locator resolved to <h1 class="headcolor" _ngcontent-nxp-c32="">Account Created Successfully</h1> +338ms
+  pw:api <= locator.textContent succeeded +5ms
+  pw:api => Expect "toContainText" started +4ms
+  pw:api Expect "toContainText" locator('[class="headcolor"]') with timeout 5000ms +7ms
+  pw:api waiting for locator('[class="headcolor"]') +1ms
+  pw:api <= Expect "toContainText" succeeded +10ms
+  pw:api => locator.click started +4ms
+  pw:api waiting for locator('[class="btn btn-primary"]') +9ms
+  pw:api   locator resolved to <button tabindex="0" routerlink="/auth" _ngcontent-nxp-c32="" class="btn btn-primary">Login</button> +10ms
+  pw:api attempting click action +4ms
+  pw:api   waiting for element to be visible, enabled and stable +0ms
+  pw:api   element is visible, enabled and stable +62ms
+  pw:api   scrolling into view if needed +1ms
+  pw:api   done scrolling +6ms
+  pw:api   performing click action +58ms
+  pw:api   navigated to "https://rahulshettyacademy.com/client/#/auth/login" +44ms
+  pw:api   click action done +33ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +14ms
+  pw:api <= locator.click succeeded +13ms
+  pw:api => locator.fill started +4ms
+  pw:api waiting for locator('#userEmail') +11ms
+  pw:api   locator resolved to <input type="email" id="userEmail" _ngcontent-nxp-c31="" formcontrolname="userEmail" placeholder="email@example.com" class="form-control ng-untouched ng-pristine ng-invalid"/> +28ms
+  pw:api   fill("SuzyRoshdy1790438658074@gmail.com") +13ms
+  pw:api attempting fill action +1ms
+  pw:api   waiting for element to be visible, enabled and editable +10ms
+  pw:api <= locator.fill succeeded +39ms
+  pw:api => locator.fill started +2ms
+  pw:api waiting for locator('#userPassword') +8ms
+  pw:api   locator resolved to <input type="password" id="userPassword" _ngcontent-nxp-c31="" formcontrolname="userPassword" placeholder="enter your passsword" class="form-control ng-untouched ng-pristine ng-invalid"/> +11ms
+  pw:api   fill("Dede@2020") +8ms
+  pw:api attempting fill action +0ms
+  pw:api   waiting for element to be visible, enabled and editable +10ms
+  pw:api <= locator.fill succeeded +47ms
+  pw:api => locator.click started +3ms
+  pw:api waiting for locator('#login') +19ms
+  pw:api   locator resolved to <input id="login" name="login" type="submit" value="Login" _ngcontent-nxp-c31="" class="btn btn-block login-btn"/> +11ms
+  pw:api attempting click action +5ms
+  pw:api   waiting for element to be visible, enabled and stable +1ms
+  pw:api   element is visible, enabled and stable +38ms
+  pw:api   scrolling into view if needed +1ms
+  pw:api   done scrolling +4ms
+  pw:api   performing click action +28ms
+  pw:api   click action done +46ms
+  pw:api   waiting for scheduled navigations to finish +0ms
+  pw:api   navigations have finished +2ms
+  pw:api <= locator.click succeeded +9ms
+  pw:api => locator.textContent started +5ms
+  pw:api waiting for locator('.card-body b').first() +13ms
+  pw:api   navigated to "https://rahulshettyacademy.com/client/#/dashboard/dash" +784ms
+  pw:api   locator resolved to <b _ngcontent-nxp-c39="">ADIDAS ORIGINAL</b> +689ms
+  pw:api <= locator.textContent succeeded +17ms
+  pw:api => locator.allTextContents started +6ms
+  pw:api <= locator.allTextContents succeeded +108ms
+  pw:api => Expect "toContainText" started +9ms
+  pw:api Expect "toContainText" locator('.card-body b').first() with timeout 5000ms +21ms
+  pw:api waiting for locator('.card-body b').first() +1ms
+  pw:api <= Expect "toContainText" succeeded +32ms
+  pw:api taking page screenshot +91ms
+  pw:api waiting for fonts to load... +40ms
+  pw:api fonts loaded +16ms
+  pw:api => browserContext.close started +227ms
+  pw:api <= browserContext.close succeeded +320ms

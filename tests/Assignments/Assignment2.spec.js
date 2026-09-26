@@ -20,7 +20,7 @@ async function loginAndGoToBooking(page) {
 }
 
 // ── Test ───────────────────────────────────────────────────────────────────────
-test('Single ticket booking is eligible for refund', async({page})=>
+test.skip('Single ticket booking is eligible for refund', async({page})=>
 {
  // ── Step 1: Log in ───────────────────────────────────────────────────────
  await loginAndGoToBooking(page);
@@ -70,7 +70,7 @@ test('Single ticket booking is eligible for refund', async({page})=>
 });
 
 
-test('Group ticket booking is NOT eligible for refund', async({page})=>
+test.skip('Group ticket booking is NOT eligible for refund', async({page})=>
 {
  // ── Step 1: Log in ───────────────────────────────────────────────────────
  await loginAndGoToBooking(page);

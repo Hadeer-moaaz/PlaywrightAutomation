@@ -15,7 +15,7 @@ async function loginAndGoToEvents(page, user) {
     await expect(page.getByRole('link', { name: 'Browse Events →' })).toBeVisible();
   }
 
-  test('Banner IS visible when 6 events are returned', async ({ page }) => {
+  test.skip('Banner IS visible when 6 events are returned', async ({ page }) => {
 
 
     

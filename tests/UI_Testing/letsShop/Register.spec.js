@@ -24,10 +24,12 @@ await page.goto("https://rahulshettyacademy.com/client/#/auth/login");
 console.log(await page.title());
 await expect(page).toHaveTitle("Let's Shop");
 
+const emailText = `SuzyRoshdy${Date.now()}@gmail.com`;;
+
 await registerBtn.click();
 await firstname.fill("Suzy");
 await lastname.fill("Roshdy");
-await email.fill("SuzyRoshdy5@gamil.com");
+await email.fill(emailText);
 await mobile.fill("1234567890");
 await gender.click();
 await password.fill("Dede@2020");
@@ -39,13 +41,11 @@ console.log(await RegsuccessMsg.textContent());
 await expect(RegsuccessMsg).toContainText('Account Created Successfully');
 
 await loginBtn.click();
-await email.fill("SuzyRoshdy5@gamil.com");
+await email.fill(emailText);
 await password.fill("Dede@2020");
 await login.click();
 console.log(await adidasLocator.first().textContent());
 console.log(await adidasLocator.allTextContents());
-await expect(adidasLocator).toContainText('ADIDAS ORIGINAL');
-
-// await page.pause();
+await expect(adidasLocator.first()).toContainText('ADIDAS ORIGINAL');
 
 });
