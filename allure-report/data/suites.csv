@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","16563","@API Login with valid data","","2026-09-21","passed","2026-09-21","","API_Testing\AbortCall&PrintApis.spec.js","",""
+"","9096","@API Security test request intercept","","2026-09-21","passed","2026-09-21","","API_Testing\InterceptRequest.spec.js","",""
+"","16233","@web Client APP login ADIDAS ORIGINAL","","2026-09-21","passed","2026-09-21","","UI_Testing\letsShop\Login&CreateOrderPO.spec.js","",""
+"","8157","@API Place the order","","2026-09-21","passed","2026-09-21","","API_Testing\LoginViaAPI.spec.js","",""
+"","8636","@@API Place the order","","2026-09-21","passed","2026-09-21","","API_Testing\InterceptResponse.spec.js","",""
+"","16285","@web Client APP login ZARA COAT 3","","2026-09-21","passed","2026-09-21","","UI_Testing\letsShop\Login&CreateOrderPO.spec.js","",""
+"","24153","@API Fixtures Demo","","2026-09-21","passed","2026-09-21","","API_Testing\fixturesDemo.spec.js","",""
