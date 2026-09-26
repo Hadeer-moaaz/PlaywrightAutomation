@@ -1,7 +1,6 @@
 const {test, expect} = require ('@playwright/test');
 
 
-
 test('Register to website with valid data', async({page})=>
 {
     const URL = "https://rahulshettyacademy.com/client/#/auth/login";
