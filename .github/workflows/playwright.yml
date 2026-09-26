@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Check Azure Playwright version
+        run: npm list @azure/playwright @playwright/test
+
       - name: Azure Login
         uses: azure/login@v2
         with:
@@ -36,7 +39,6 @@ jobs:
           fi
 
           echo "PLAYWRIGHT_SERVICE_URL is configured"
-          echo "Starts with https://: ${PLAYWRIGHT_SERVICE_URL#https://}" | sed 's/./*/g'
 
       - name: Debug Playwright Service URL
         env:
@@ -44,12 +46,11 @@ jobs:
         run: |
           echo "Protocol: ${PLAYWRIGHT_SERVICE_URL%%:*}"
           echo "Length: ${#PLAYWRIGHT_SERVICE_URL}"
-          echo "Starts with wss: ${PLAYWRIGHT_SERVICE_URL#wss://}"
 
       - name: Run Playwright tests
-        run: npx playwright test --config=playwright.service.config.js --workers=1
         env:
-          PLAYWRIGHT_SERVICE_URL: ${{ secrets.PLAYWRIGHT_SERVICE_URL }}
+          PLAYWRIGHT_SERVICE_URL: ${{ vars.PLAYWRIGHT_SERVICE_URL }}
+        run: npx playwright test --config=playwright.service.config.js --workers=1
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
