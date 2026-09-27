@@ -3,8 +3,7 @@ const { createAzurePlaywrightConfig, ServiceOS } = require('@azure/playwright');
 const { DefaultAzureCredential } = require('@azure/identity');
 const config = require('./playwright.config');
 
-
-export default defineConfig(
+module.exports = defineConfig(
   createAzurePlaywrightConfig(config, {
     exposeNetwork: '<loopback>',
     connectTimeout: 3 * 60 * 1000,
@@ -13,11 +12,8 @@ export default defineConfig(
   }),
   {
     reporter: [
-      ["html", { open: "never" }],
+      ["blob"],
       ["@azure/playwright/reporter"],
     ],
   }
 );
-
-
-

@@ -1,10 +1,11 @@
-name: Playwright Tests
+name: Playwright Tests (Docker Shared)
 
 on:
-  push:
-    branches: [ main, master,septCut ]
-  pull_request:
-    branches: [ main, master ]
+  workflow_dispatch:   # only runs when manually triggered from the Actions tab
+  # push:
+  #   branches: [ main, master,septCut ]
+  # pull_request:
+  #   branches: [ main, master ]
  
 jobs:
   test:
