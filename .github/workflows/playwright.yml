@@ -14,8 +14,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shardIndex: [1, 2, 3, 4, 5, 6, 7]
-        shardTotal: [7]
+        shardIndex: [1, 2, 3, 4, 5, 6, 7,8,9]
+        shardTotal: [9]
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -35,7 +35,7 @@ jobs:
           PLAYWRIGHT_SERVICE_URL: ${{ vars.PLAYWRIGHT_SERVICE_URL }}
           PLAYWRIGHT_SERVICE_RUN_ID: ${{ github.run_id }}-${{ github.run_attempt }}
         run: >
-          npx playwright test --config=playwright.service.config.js --workers=4
+          npx playwright test --config=playwright.service.config.js --workers=1
           --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - uses: actions/upload-artifact@v4
