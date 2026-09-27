@@ -18,7 +18,6 @@ jobs:
         shardTotal: [4]
     steps:
       - uses: actions/checkout@v5
-
       - uses: actions/setup-node@v5
         with:
           node-version: lts/*
@@ -26,31 +25,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Check Azure Playwright version
-        run: npm list @azure/playwright @playwright/test
-
       - name: Azure Login
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Check Playwright Service URL
-        env:
-          PLAYWRIGHT_SERVICE_URL: ${{ vars.PLAYWRIGHT_SERVICE_URL }}
-        run: |
-          if [ -z "$PLAYWRIGHT_SERVICE_URL" ]; then
-            echo "::error::PLAYWRIGHT_SERVICE_URL is not set"
-            exit 1
-          fi
-
-          echo "PLAYWRIGHT_SERVICE_URL is configured"
-
-      - name: Debug Playwright Service URL
-        env:
-          PLAYWRIGHT_SERVICE_URL: ${{ vars.PLAYWRIGHT_SERVICE_URL }}
-        run: |
-          echo "Protocol: ${PLAYWRIGHT_SERVICE_URL%%:*}"
-          echo "Length: ${#PLAYWRIGHT_SERVICE_URL}"
 
       - name: Run Playwright tests
         env:
