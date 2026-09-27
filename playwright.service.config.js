@@ -13,7 +13,7 @@ module.exports = defineConfig(
   {
     reporter: [
   ["html", { open: "never" }],
-  ["blob"],
+ // ["blob"],
   ["@azure/playwright/reporter"],
 ],
   }
