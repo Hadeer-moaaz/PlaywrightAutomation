@@ -9,7 +9,6 @@ module.exports = defineConfig(
     connectTimeout: 3 * 60 * 1000,
     os: ServiceOS.LINUX,
     credential: new DefaultAzureCredential(),
-    runId: process.env.PLAYWRIGHT_SERVICE_RUN_ID,
   }),
   {
     reporter: [
