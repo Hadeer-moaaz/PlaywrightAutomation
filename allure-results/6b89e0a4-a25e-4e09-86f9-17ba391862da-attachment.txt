@@ -1,0 +1,6 @@
+LoginPage Practise | Rahul Shetty Academy
+The checkbox is checked.
+undefined
+iphone X
+[ 'iphone X', 'Samsung Note 8', 'Nokia Edge', 'Blackberry' ]
+ProtoCommerce

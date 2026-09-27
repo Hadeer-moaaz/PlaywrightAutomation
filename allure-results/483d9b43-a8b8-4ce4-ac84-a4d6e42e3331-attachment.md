@@ -1,0 +1,219 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: UI_Testing\loginpagePractise\login2.spec.js >> Login with valid data
+- Location: tests\UI_Testing\loginpagePractise\login2.spec.js:16:1
+
+# Error details
+
+```
+TimeoutError: locator.click: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator('#terms')
+    - locator resolved to <input id="terms" name="terms" type="checkbox"/>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div id="myModal" class="modal fade show">…</div> intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div id="myModal" class="modal fade show">…</div> intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    17 × waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <div id="myModal" class="modal fade show">…</div> intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - link "Free Access to InterviewQues/ResumeAssistance/Material" [ref=e3] [cursor=pointer]:
+      - /url: https://rahulshettyacademy.com/documents-request
+    - link "🎯 I'll help you prepare for your next QA job — Explore the QA Career Accelerator." [ref=e4] [cursor=pointer]:
+      - /url: https://rahulshettyacademy.com/qa-career-accelerator-job-ready
+  - generic [ref=e5]:
+    - heading [level=3] [ref=e6]
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]: "Username:"
+        - textbox "Username:" [ref=e17]: rahulshettyacademy
+      - generic [ref=e18]:
+        - generic [ref=e19]: "Password:"
+        - textbox "Password:" [ref=e20]: Learning@830$3mK2
+      - generic [ref=e22]:
+        - generic [ref=e23] [cursor=pointer]:
+          - text: Admin
+          - radio "Admin" [ref=e24]
+        - generic [ref=e26] [cursor=pointer]:
+          - text: User
+          - radio "User" [checked] [ref=e27]
+      - combobox [ref=e30]:
+        - option "Student"
+        - option "Teacher"
+        - option "Consultant" [selected]
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - checkbox "I Agree to the terms and conditions" [ref=e34]
+          - generic [ref=e35]:
+            - text: I Agree to the
+            - link "terms and conditions" [ref=e36] [cursor=pointer]:
+              - /url: "#"
+        - button "Sign In" [ref=e37] [cursor=pointer]
+      - paragraph [ref=e39]:
+        - text: (username is
+        - generic [ref=e40]: rahulshettyacademy
+        - text: and Password is
+        - generic [ref=e41]: Learning@830$3mK2
+        - text: )
+  - generic [ref=e43]:
+    - paragraph [ref=e45]: You will be limited to only fewer functionalities of the app. Proceed?
+    - generic [ref=e46]:
+      - button "Cancel" [ref=e47] [cursor=pointer]
+      - button "Okay" [active] [ref=e48] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  1   | const {test, expect} = require('@playwright/test');
+  2   | const { text } = require('node:stream/consumers');
+  3   | const { only } = require('node:test');
+  4   | 
+  5   | test('Browser Context Playwright test', async ({browser})=>
+  6   | {
+  7   |     
+  8   |     const context = await browser.newContext();
+  9   |     const page = await context.newPage();
+  10  |     await page.goto("https://www.google.com/");
+  11  |     console.log(await page.title());
+  12  |    await expect(page).toHaveTitle("Google");
+  13  | 
+  14  | });
+  15  | 
+  16  | test('Login with valid data', async ({page})=>
+  17  | {
+  18  | 
+  19  |     const username = page.locator('#username');
+  20  |     const password = page.locator('#password');
+  21  |     const signinBtn = page.locator('#signInBtn');
+  22  |     const warningMessage_locator = page.locator("[style*='block']");
+  23  |     const iphoneLocator = page.locator('.card-body a');
+  24  |     const dropdown = page.locator('select.form-control'); //select 
+  25  |     const radioBtn = page.locator('[class="checkmark"]');
+  26  |     const okayBtn = page.locator("#okayBtn");
+  27  |     const bodymsg = page.locator("div.modal-body");
+  28  |     const terms = page.locator('#terms');
+  29  |     const documentLink = page.locator('[class="blinkingText"]');
+  30  | 
+  31  |     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+  32  |     console.log(await page.title()); // get title - assersion
+  33  |     await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy");
+  34  | 
+  35  | //Enter valid data
+  36  |     await username.fill("rahulshettyacademy") //locate the username 
+  37  |     await password.fill("Learning@830$3mK2"); //locate the password 
+  38  |     await radioBtn.nth(1).click();
+  39  |     const isChecked = await radioBtn.nth(1).isChecked();
+  40  |     if (isChecked) {
+  41  |         console.log("The checkbox is checked.");
+  42  |     } else {
+  43  |         console.log("The checkbox is not checked.");
+  44  |     }
+  45  | 
+  46  |     console.log(await okayBtn.click());
+  47  |     await expect(bodymsg).toContainText('You will be limited to only fewer functionalities of the app. Proceed?');
+  48  |     await expect(radioBtn.nth(1)).toBeChecked();
+  49  | 
+  50  |     await dropdown.selectOption("consult");
+> 51  |     await terms.click();
+      |                 ^ TimeoutError: locator.click: Timeout 10000ms exceeded.
+  52  |     await expect(terms).toBeChecked();
+  53  |     await terms.uncheck();
+  54  |     expect(await terms.isChecked()).toBeFalsy();
+  55  |     await expect(documentLink.nth(0)).toHaveAttribute('class', 'blinkingText'); //assert on blinky link class
+  56  | 
+  57  |     await signinBtn.click();
+  58  |     //print the message 
+  59  |     //console.log(await iphoneLocator.first().textContent()); // print the first element 1 way
+  60  |     console.log(await iphoneLocator.nth(0).textContent());  // print the first element 2 way
+  61  |     await expect(iphoneLocator.nth(0)).toContainText("iphone X"); //assert on the first element
+  62  |     console.log(await iphoneLocator.allTextContents());  // print all elements
+  63  |     console.log(await page.title()); //print the title
+  64  |     await expect(page).toHaveTitle("ProtoCommerce"); //assert on the title 
+  65  | 
+  66  | });
+  67  | 
+  68  | 
+  69  | test('Login with invalid data', async ({ page }) => {
+  70  |   const username = page.locator('#username');
+  71  |   const password = page.locator('#password');
+  72  |   const signinBtn = page.locator('#signInBtn'); // reuse the working locator from the test above
+  73  |   const warningMessage_locator = page.getByText(/Incorrect/i); // resilient to markup/style changes
+  74  |   const dropdown = page.locator('select.form-control');
+  75  |   const radioBtn = page.locator('[class="checkmark"]');
+  76  |   const okayBtn = page.locator('#okayBtn');
+  77  |   const bodymsg = page.locator('div.modal-body');
+  78  |   const terms = page.locator('#terms');
+  79  | 
+  80  |   await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+  81  |   await expect(page).toHaveTitle('LoginPage Practise | Rahul Shetty Academy');
+  82  | 
+  83  |   await username.fill('rahulshettyacademy');
+  84  |   await password.fill('Learning@830$3mK'); // invalid password
+  85  |   await radioBtn.nth(1).click();
+  86  |   await okayBtn.click();
+  87  |   await expect(bodymsg).toContainText('You will be limited to only fewer functionalities of the app. Proceed?');
+  88  |   await dropdown.selectOption('consult');
+  89  |   await terms.click();
+  90  | 
+  91  |   await signinBtn.click();
+  92  |   await expect(warningMessage_locator).toBeVisible();
+  93  |   await expect(warningMessage_locator).toContainText('Incorrect');
+  94  | });
+  95  | 
+  96  | test('child window handling', async({browser})=>
+  97  | {
+  98  |     const context = await browser.newContext();
+  99  |     const page = await context.newPage();
+  100 |     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+  101 |     const documentLink = page.locator('[class="blinkingText"]');
+  102 |     const username = page.locator('#username');
+  103 | 
+  104 |     //method to listen to any page gets opened, pending, rejected, fulfilled
+  105 |     const [newPage] = await Promise.all
+  106 |     (
+  107 |     [context.waitForEvent('page'), 
+  108 |     await documentLink.nth(0).click(),]  
+  109 |     )
+  110 | 
+  111 |    const text = await newPage.locator('[class="im-para red"]').textContent();
+  112 |    const arrayText = text.split("@")
+  113 |    const domain = arrayText[1].split(" ")[0]
+  114 |    // console.log(domain);
+  115 |    await page.locator("#username").fill(domain);
+  116 |   // console.log(await page.locator("#username").textContent()); // textContent will show the locator text when it is present in the DOM like username/password 
+  117 |   console.log(await page.locator("#username").inputValue()); 
+  118 |     // const massage = newPage.locator('[class="im-para red"]');
+  119 |     // console.log(await massage.textContent());
+  120 | });
+  121 | 
+```

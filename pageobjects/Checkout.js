@@ -1,10 +1,8 @@
-const {expect} = require ('@playwright/test');
+const {expect} = require('@playwright/test');
 
 class Checkout {
 
-
     constructor(page){
-
         this.page = page;
         this.quantitylocator = page.locator('[class="item__quantity"]');
         this.creditCardNum = page.locator('[type="text"]');
@@ -24,67 +22,56 @@ class Checkout {
         this.tbodyTable = page.locator("tbody tr");
         this.OrderIdDetails = page.locator('.col-text');
     }
-async quantity (){
-    await expect(this.quantitylocator.first()).toHaveText(" Quantity: 1 ");
-}
 
-async creditCardInfo (creditCardNum, month, day, csv, nameOnCard){
+    async quantity() {
+        await expect(this.quantitylocator.first()).toHaveText(" Quantity: 1 ");
+    }
 
-    await this.creditCardNum.nth(0).fill(creditCardNum);
-    await this.month.nth(0).selectOption(month);
-    await this.day.nth(1).selectOption(day);
-    await this.csv.first().fill(csv);
-    await this.nameOnCard.last().fill(nameOnCard);
+    async creditCardInfo(creditCardNum, month, day, csv, nameOnCard) {
+        await this.creditCardNum.nth(0).fill(creditCardNum);
+        await this.month.nth(0).selectOption(month);
+        await this.day.nth(1).selectOption(day);
+        await this.csv.first().fill(csv);
+        await this.nameOnCard.last().fill(nameOnCard);
+    }
 
-}
+    async searchCountryAndSelect(countryCode) {
+        await this.selectCountry.pressSequentially(countryCode, { delay: 150 });
+        await this.countryText.click();
+    }
 
-async searchCountryAndSelect (countryCode){
+    async applyCoupon(couponCode) {
+        await this.coupon.fill(couponCode);
+        await this.ApplycouponBtn.click({ timeout: 10_000 });
+    }
 
-    await this.selectCountry.pressSequentially(countryCode, { delay: 150 });
-    await this.countryText.click();
-}
+    async submitandGetOrderID() {
+        await this.placeOrder.click();
+        await expect(this.thankUMsg).toHaveText(" Thankyou for the order. ");
+        await expect(this.thankUMsg).toBeVisible();
 
-async applyCoupon (couponCode){
+        const rawText = await this.orderIdLocator.textContent();
+        this.orderId = rawText.replace(/\|/g, '').trim();
 
-    await this.coupon.fill(couponCode);
-    await this.ApplycouponBtn.click({ timeout: 10_000 });
-}
+        await this.orderBtnLocator.click();
+        await this.tbody.waitFor();
 
-async submitandGetOrderID()
-{
-    await this.placeOrder.click();
-    await expect (this.thankUMsg).toHaveText(" Thankyou for the order. ");
-    await expect (this.thankUMsg).toBeVisible();
-    console.log(await this.thankUMsg.innerText());
+        const rows = this.tbodyTable;
+        for (let i = 0; i < await rows.count(); ++i) {
+            const orderIdNum = (await rows.nth(i).locator("th").textContent()).trim();
+            if (this.orderId.includes(orderIdNum)) {
+                await rows.nth(i).locator("button").nth(0).click();
+                break;
+            }
+        }
 
+        // Wait for the order-details page to actually render before reading it
+        await this.OrderIdDetails.first().waitFor({ state: 'visible', timeout: 15000 });
+    }
 
-    this.orderId = await this.orderIdLocator.textContent();
-    console.log(await this.orderId);
-    await this.orderBtnLocator.click();
-    await this.tbody.waitFor(); 
-
-
-    const rows = this.tbodyTable;
-    for (let i = 0; i < await rows.count(); ++i){
-       const orderIdNum = await rows.nth(i).locator("th").textContent();
-       if (this.orderId.includes(orderIdNum))
-       {
-        console.log("orderID = orderIdNum");
-        await rows.nth(i).locator("button").nth(0).click();
-        break;
-       }
+    async checkOrder() {
+        await expect(this.OrderIdDetails.first()).toContainText(this.orderId, { timeout: 15000 });
     }
 }
 
-async checkOrder (){
-
-    
-    await this.orderBtnLocator.waitFor();
-    const orderIdDetailsText = await this.OrderIdDetails.textContent();
-    expect(this.orderId.includes(orderIdDetailsText)).toBeTruthy();
-    console.log(orderIdDetailsText);
-}
-
-
-}
-module.exports = {Checkout};
+module.exports = { Checkout };
