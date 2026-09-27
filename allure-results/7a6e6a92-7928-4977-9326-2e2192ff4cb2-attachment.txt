@@ -1,7 +1,0 @@
-LoginPage Practise | Rahul Shetty Academy
-The checkbox is checked.
-undefined
-Terms count: 1
-Terms visible: true
-Terms enabled: true
-Incorrect username/password.

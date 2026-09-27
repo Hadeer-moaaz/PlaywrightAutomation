@@ -37,7 +37,6 @@ for(let i =0; i<await rows.count(); ++i)
    }
 }
 const orderIdDetails =await page.locator(".col-text").textContent();
-//await page.pause();
 expect(response.orderId.includes(orderIdDetails)).toBeTruthy();
  
 });

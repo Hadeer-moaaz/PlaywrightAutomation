@@ -1,9 +1,0 @@
-Let's Shop
-ADIDAS ORIGINAL$ 11500 View Add To Cart
-[
-  'ADIDAS ORIGINAL$ 11500 View Add To Cart',
-  'ZARA COAT 3$ 11500 View Add To Cart',
-  'iphone 13 pro$ 55000 View Add To Cart'
-]
-THANKYOU FOR THE ORDER.
- | 6ab8f0b12be7a4bc2b729b1a | 

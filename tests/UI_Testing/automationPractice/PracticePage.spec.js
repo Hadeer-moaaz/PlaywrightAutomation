@@ -27,7 +27,7 @@ test('handle popup', async({page})=>
 //  page.on('dialog', dialog => dialog.dismiss());
     await page.locator('#confirmbtn').click();
     await page.locator('#mousehover').hover();
-    await page.pause();
+    // await page.pause();
 });
 
 test('handle Frames', async({page})=>
@@ -35,7 +35,7 @@ test('handle Frames', async({page})=>
     await page.goto(BASE_URL);
     const framePage = page.frameLocator('#courses-iframe');
     await framePage.locator('li a[href="lifetime-access"]').first().click();
-    await page.pause();
+    // await page.pause();
     const textCheck= await framePage.locator('div h2').first().textContent();
   //console.log(textCheck.split(" ")[1]); 
     console.log(`Number of Subscibers: ${textCheck.split(" ")[1]}`);
