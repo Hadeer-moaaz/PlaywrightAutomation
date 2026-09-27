@@ -1,4 +1,0 @@
-Let's Shop
-Account Created Successfully
-ADIDAS ORIGINAL
-[ 'ADIDAS ORIGINAL', 'ZARA COAT 3', 'iphone 13 pro' ]
