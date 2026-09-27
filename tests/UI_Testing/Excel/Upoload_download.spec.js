@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-
+const path = require('path');
 const ExcelJs = require('exceljs');
 
 async function WriteExcel(searchText, replaceText , change, filePath) {
@@ -39,7 +39,8 @@ test('Upload Download excel Validations', async ({page})=>
 
     const TextSearch = 'Mango';
     const updateValue = '350';
-    const filePath = "C:/Users/Hp/Downloads/download";
+    const filePath = path.join(__dirname, 'download.xlsx'); // ✅ portable path
+
 
     await page.goto("https://rahulshettyacademy.com/upload-download-test/index.html");
     const downloadPromise = page.waitForEvent('download');
