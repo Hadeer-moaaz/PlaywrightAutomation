@@ -1,10 +1,11 @@
 name: Playwright Tests (Azure Service)
 
 on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+  workflow_dispatch:   # only runs when manually triggered from the Actions tab
+  # push:
+  #   branches: [main, master]
+  # pull_request:
+  #   branches: [main, master]
 
 jobs:
   test:
