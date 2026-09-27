@@ -37,28 +37,17 @@ test('Register to website with valid data', async({page})=>
     await password.fill(passText);
     await login.click();
 
-    // waiting for 
-    await page.waitForLoadState('networkidle');
-    await products.first().waitFor();
+//     await page.waitForLoadState('networkidle');
+//     await products.first().waitFor();
+    await expect(products.first()).toBeVisible();
     console.log(await products.first().textContent());
     console.log(await products.allTextContents());
 
-/*
-    await expect(products.first()).toContainText('ADIDAS ORIGINAL');
-    const count = await products.count();
-    for (let i = 0; i < count; ++i){
-    if (await products.nth(i).locator("b").textContent() === productName ) 
-    {
-            //add to cart
-            await products.nth(i).locator("text= Add To Cart").click();
-            console.log("Product Added to cart")
-            break;
-     }}
-*/
     await products
                 .filter({hasText: productName})
                 .getByRole("button", {name: " Add To Cart"})
                 .click();
+                
     await page
              .getByRole("listitem")
              .getByRole('button', {name: "Cart"})
@@ -85,19 +74,6 @@ test('Register to website with valid data', async({page})=>
                     .last()
                     .fill("Suzy Roshdy Rahul");
    
-/*
-    await options.waitFor();
-    const optionsCount = await options.locator("button").count();
-    for (let i = 0; i < optionsCount; ++i){
-
-       const text = await options.locator("button").nth(1).textContent();
-        if (text === " Egypt")
-        {
-           await options.locator("button").nth(1).click();
-            break;
-        }
-    }
-*/
     await page
             .getByPlaceholder("Select Country")
             .pressSequentially("Eg", { delay: 150 });

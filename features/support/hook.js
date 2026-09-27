@@ -4,7 +4,7 @@ const { chromium } = require('playwright');
 
 Before(async function () {
 
-        this.browser = await chromium.launch({ headless: false});
+        this.browser = await chromium.launch({ headless: process.env.CI ? true : false });
         this.context = await this.browser.newContext();
         this.page =  await  this.context.newPage();
         this.pomanager = new POmanager(this.page);
