@@ -12,8 +12,9 @@ module.exports = defineConfig(
   }),
   {
     reporter: [
-      ["blob"],
-      ["@azure/playwright/reporter"],
-    ],
+  ["html", { open: "never" }],
+  ["blob"],
+  ["@azure/playwright/reporter"],
+],
   }
 );
