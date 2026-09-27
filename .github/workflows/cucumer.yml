@@ -1,0 +1,46 @@
+name: Cucumber Tests 
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Run Playwright tests
+        env:
+          PLAYWRIGHT_SERVICE_URL: ${{ vars.PLAYWRIGHT_SERVICE_URL }}
+          PLAYWRIGHT_SERVICE_RUN_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+        run: >
+          npx playwright test --config=playwright.service.config.js --workers=4
+          --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-${{ matrix.shardIndex }}
+          path: playwright-report/
+          retention-days: 30
