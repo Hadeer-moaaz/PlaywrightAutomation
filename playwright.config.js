@@ -1,32 +1,26 @@
-import { chromium, defineConfig, devices } from '@playwright/test';
+const { defineConfig, devices } = require('@playwright/test');
 
-/**
- * @see https://playwright.dev/docs/test-configuration
- */
-const config = ({
+module.exports = defineConfig({
   testDir: './tests',
-  retries: 0 ,
-  timeout: 60 *1000,
+  retries: 0,
+  timeout: 60 * 1000,
+  workers: process.env.CI ? 1 : undefined,
   expect: {
     timeout: 5000,
   },
-  reporter:'html',
   reporter: [["line"], ["allure-playwright"]],
-  
-  use: {
-  browserName: 'chromium',
-  headless: false,
-  actionTimeout: 10 * 1000,
-  navigationTimeout: 30 * 1000,
-  screenshot: 'only-on-failure',
-  video: 'retain-on-failure-and-retries',
-  trace: 'retain-on-failure',
-  ignoreHTTPSErrors: true,
-  //...devices['iPhone 11'],
-  viewport: null, launchOptions: {args: ['--start-maximized'],},
-  permissions: ['geolocation']
-}
-});
-module.exports = config;
 
-//https://playwright.dev/docs/api/class-testconfig
+  use: {
+    browserName: 'chromium',
+    headless: process.env.CI ? true : false, // headed locally, headless in CI
+    actionTimeout: 10 * 1000,
+    navigationTimeout: 30 * 1000,
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    trace: 'retain-on-failure',
+    ignoreHTTPSErrors: true,
+    viewport: null,
+    launchOptions: { args: ['--start-maximized'] },
+    permissions: ['geolocation'],
+  },
+});
