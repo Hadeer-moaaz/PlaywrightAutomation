@@ -51,7 +51,7 @@ test('Upload Download excel Validations', async ({page})=>
     // await downloadPromise;
     await WriteExcel(TextSearch, updateValue, {rowChange:0,colChange:2} ,filePath);
     await page.locator('#fileinput').click();
-    await page.locator('#fileinput').setInputFiles("C:/Users/Hp/Downloads/download");
+    await page.locator('#fileinput').setInputFiles(filePath);
     const textLocator = page.getByText(TextSearch);
     const desierdRow = page.getByRole('row').filter({has: textLocator});
     await expect(desierdRow.locator('#cell-4-undefined')).toContainText(updateValue);
