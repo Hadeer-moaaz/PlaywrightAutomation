@@ -66,51 +66,31 @@ test('Login with valid data', async ({page})=>
 });
 
 
-test('Login with invalid data', async ({page})=>
-{
+test('Login with invalid data', async ({ page }) => {
+  const username = page.locator('#username');
+  const password = page.locator('#password');
+  const signinBtn = page.locator('#signInBtn'); // reuse the working locator from the test above
+  const warningMessage_locator = page.getByText(/Incorrect/i); // resilient to markup/style changes
+  const dropdown = page.locator('select.form-control');
+  const radioBtn = page.locator('[class="checkmark"]');
+  const okayBtn = page.locator('#okayBtn');
+  const bodymsg = page.locator('div.modal-body');
+  const terms = page.locator('#terms');
 
-    const username = page.locator('#username');
-    const password = page.locator('#password');
-    const signinBtn2 = page.getByRole('button', { name: 'Sign In' });
-    const warningMessage_locator = page.locator("[style*='block']");
-    const iphoneLocator = page.locator('.card-body a');
-    const dropdown = page.locator('select.form-control'); //select 
-    const radioBtn = page.locator('[class="checkmark"]');
-    const okayBtn = page.locator("#okayBtn");
-    const bodymsg = page.locator("div.modal-body");
-    const terms = page.locator('#terms');
+  await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+  await expect(page).toHaveTitle('LoginPage Practise | Rahul Shetty Academy');
 
+  await username.fill('rahulshettyacademy');
+  await password.fill('Learning@830$3mK'); // invalid password
+  await radioBtn.nth(1).click();
+  await okayBtn.click();
+  await expect(bodymsg).toContainText('You will be limited to only fewer functionalities of the app. Proceed?');
+  await dropdown.selectOption('consult');
+  await terms.click();
 
-
-    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
-    console.log(await page.title()); // get title - assersion
-    await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy");
-    
-    // Enter invalid data
-    await username.fill("rahulshettyacademy");
-    await password.fill("Learning@830$3mK");
-    await radioBtn.nth(1).click();
-    const isChecked = await radioBtn.nth(1).isChecked();
-    if (isChecked) {
-        console.log("The checkbox is checked.");
-    } else {
-        console.log("The checkbox is not checked.");
-    }
-    
-    console.log(await okayBtn.click());
-    await expect(bodymsg).toContainText('You will be limited to only fewer functionalities of the app. Proceed?');
-    await dropdown.selectOption("consult");  //select 
-    
-    console.log("Terms count:", await terms.count());
-    console.log("Terms visible:", await terms.isVisible());
-    console.log("Terms enabled:", await terms.isEnabled());
-
-    await terms.click();
-
-    await signinBtn2.click();
-    console.log(await warningMessage_locator.textContent());//print the warning 
-    await expect(warningMessage_locator).toContainText('Incorrect');   //asserstion 
-
+  await signinBtn.click();
+  await expect(warningMessage_locator).toBeVisible();
+  await expect(warningMessage_locator).toContainText('Incorrect');
 });
 
 test('child window handling', async({browser})=>
