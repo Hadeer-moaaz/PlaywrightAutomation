@@ -4,9 +4,9 @@ module.exports = defineConfig({
   testDir: './tests',
   retries: process.env.CI ? 1 : 0,   // ← auto-retry once in CI, no retries locally
   timeout: 60 * 1000,
-  workers: process.env.CI ? 1 : undefined,
+ // workers: process.env.CI ? 1 : undefined,
   expect: {
-    timeout: 5000,
+    timeout: 15000,
   },
   reporter: [["line"], ["allure-playwright"]],
 

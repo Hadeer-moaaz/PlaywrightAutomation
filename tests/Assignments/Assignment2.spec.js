@@ -115,7 +115,7 @@ test.skip('Group ticket booking is NOT eligible for refund', async({page})=>
     await expect(snipper).toBeVisible();
     await expect(snipper).not.toBeVisible({timeout: 6000});
 
-    await page.pause();
+   //  await page.pause();
  // ── Step 6 — Validate result ──────────────────────────────────────────────
     const refundResult = page.getByTestId('refund-result');
     await expect(refundResult).toBeVisible();

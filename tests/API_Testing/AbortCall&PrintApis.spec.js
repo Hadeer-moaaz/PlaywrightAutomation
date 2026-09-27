@@ -30,13 +30,18 @@ test('@API Login with valid data', async ({browser})=>
     await expect(page.locator("div.modal-body")).toContainText('You will be limited to only fewer functionalities of the app. Proceed?');
     await expect(page.locator('[class="checkmark"]').nth(1)).toBeChecked();
 
-    await page.locator('select.form-control').selectOption("consult");
-    await page.locator('#terms').click();
-    await expect(page.locator('#terms')).toBeChecked();
-    await page.locator('#terms').uncheck();
-    expect(await page.locator('#terms').isChecked()).toBeFalsy();
-    await expect(page.locator('[class="blinkingText"]').nth(0)).toHaveAttribute('class', 'blinkingText'); //assert on blinky link class
+    const terms = page.locator('#terms');
 
+    const dropdown = page.locator('select.form-control');
+    await dropdown.selectOption("consult");
+    await terms.click();
+    await expect(terms).toBeChecked();
+    await terms.uncheck();
+    expect(await terms.isChecked()).toBeFalsy();
+    const documentLink = page.locator('[class="blinkingText"]');
+    await expect(documentLink.nth(0)).toHaveAttribute('class', 'blinkingText'); //assert on blinky link class
+
+    
     await page.locator('#signInBtn').click();
     
     console.log(await page.locator('.card-body a').nth(0).textContent());  
