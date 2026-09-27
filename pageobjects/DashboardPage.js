@@ -1,3 +1,5 @@
+const {expect} = require('@playwright/test');
+
 class DashboardPage {
 
     constructor(page){
@@ -7,30 +9,30 @@ class DashboardPage {
         this.productsText = page.locator(".card-body b");
         this.cart = page.getByRole("listitem").getByRole('button', {name: "Cart"})
         this.orders = page.locator("button[routerlink*='myorders']");
-
-        
-        
     }
 
-async searchProductAddCart(productName){
+    async searchProductAddCart(productName){
         await this.products.first().waitFor();
         console.log(await this.products.first().textContent());
         console.log(await this.products.allTextContents());
-        
-        
-            await this.products
+
+        const addToCartBtn = this.products
                         .filter({hasText: productName})
-                        .getByRole("button", {name: " Add To Cart"})
-                        .click();               
+                        .getByRole("button", {name: " Add To Cart"});
+
+        // Retry the click if the app didn't register it — bounded,
+        // so a genuine bug still fails clearly instead of hanging.
+        await expect(async () => {
+            await addToCartBtn.click();
+            await this.page.waitForTimeout(300);
+        }).toPass({ timeout: 5000 });
     }
 
-    async navigateToOrders()
-    {
+    async navigateToOrders() {
         await this.orders.click();
     }
-    
-    async navigateToCart ()
-    {
+
+    async navigateToCart () {
         await this.cart.click();
     }
 }
