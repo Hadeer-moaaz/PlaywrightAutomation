@@ -6,7 +6,7 @@ const config = require('./playwright.config');
 module.exports = defineConfig(
   createAzurePlaywrightConfig(config, {
     exposeNetwork: '<loopback>',
-    connectTimeout: 3 * 60 * 1000,
+    connectTimeout: 5 * 60 * 1000,// 5 minutes
     os: ServiceOS.LINUX,
     credential: new DefaultAzureCredential(),
   }),

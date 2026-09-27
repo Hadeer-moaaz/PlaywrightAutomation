@@ -1,0 +1,158 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: UI_Testing\loginpagePractise\login2.spec.js >> Login with invalid data
+- Location: tests\UI_Testing\loginpagePractise\login2.spec.js:69:6
+
+# Error details
+
+```
+ReferenceError: getByRole is not defined
+```
+
+# Test source
+
+```ts
+  1   | const {test, expect} = require('@playwright/test');
+  2   | const { text } = require('node:stream/consumers');
+  3   | const { only } = require('node:test');
+  4   | 
+  5   | test('Browser Context Playwright test', async ({browser})=>
+  6   | {
+  7   |     
+  8   |     const context = await browser.newContext();
+  9   |     const page = await context.newPage();
+  10  |     await page.goto("https://www.google.com/");
+  11  |     console.log(await page.title());
+  12  |    await expect(page).toHaveTitle("Google");
+  13  | 
+  14  | });
+  15  | 
+  16  | test('Login with valid data', async ({page})=>
+  17  | {
+  18  | 
+  19  |     const username = page.locator('#username');
+  20  |     const password = page.locator('#password');
+  21  |     const signinBtn = page.locator('#signInBtn');
+  22  |     const warningMessage_locator = page.locator("[style*='block']");
+  23  |     const iphoneLocator = page.locator('.card-body a');
+  24  |     const dropdown = page.locator('select.form-control'); //select 
+  25  |     const radioBtn = page.locator('[class="checkmark"]');
+  26  |     const okayBtn = page.locator("#okayBtn");
+  27  |     const bodymsg = page.locator("div.modal-body");
+  28  |     const terms = page.locator('#terms');
+  29  |     const documentLink = page.locator('[class="blinkingText"]');
+  30  | 
+  31  |     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+  32  |     console.log(await page.title()); // get title - assersion
+  33  |     await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy");
+  34  | 
+  35  | //Enter valid data
+  36  |     await username.fill("rahulshettyacademy") //locate the username 
+  37  |     await password.fill("Learning@830$3mK2"); //locate the password 
+  38  |     await radioBtn.nth(1).click();
+  39  |     const isChecked = await radioBtn.nth(1).isChecked();
+  40  |     if (isChecked) {
+  41  |         console.log("The checkbox is checked.");
+  42  |     } else {
+  43  |         console.log("The checkbox is not checked.");
+  44  |     }
+  45  | 
+  46  |     console.log(await okayBtn.click());
+  47  |     await expect(bodymsg).toContainText('You will be limited to only fewer functionalities of the app. Proceed?');
+  48  |     await expect(radioBtn.nth(1)).toBeChecked();
+  49  | 
+  50  |     await dropdown.selectOption("consult");
+  51  |     await terms.click();
+  52  |     await expect(terms).toBeChecked();
+  53  |     await terms.uncheck();
+  54  |     expect(await terms.isChecked()).toBeFalsy();
+  55  |     await expect(documentLink.nth(0)).toHaveAttribute('class', 'blinkingText'); //assert on blinky link class
+  56  | 
+  57  |     await signinBtn.click();
+  58  |     //print the message 
+  59  |     //console.log(await iphoneLocator.first().textContent()); // print the first element 1 way
+  60  |     console.log(await iphoneLocator.nth(0).textContent());  // print the first element 2 way
+  61  |     await expect(iphoneLocator.nth(0)).toContainText("iphone X"); //assert on the first element
+  62  |     console.log(await iphoneLocator.allTextContents());  // print all elements
+  63  |     console.log(await page.title()); //print the title
+  64  |     await expect(page).toHaveTitle("ProtoCommerce"); //assert on the title 
+  65  | 
+  66  | });
+  67  | 
+  68  | 
+  69  | test.only('Login with invalid data', async ({page})=>
+  70  | {
+  71  | 
+  72  |     const username = page.locator('#username');
+  73  |     const password = page.locator('#password');
+> 74  |     const signinBtn2 = getByRole('button', { name: 'Sign In' });
+      |                        ^ ReferenceError: getByRole is not defined
+  75  |     const warningMessage_locator = page.locator("[style*='block']");
+  76  |     const iphoneLocator = page.locator('.card-body a');
+  77  |     const dropdown = page.locator('select.form-control'); //select 
+  78  |     const radioBtn = page.locator('[class="checkmark"]');
+  79  |     const okayBtn = page.locator("#okayBtn");
+  80  |     const bodymsg = page.locator("div.modal-body");
+  81  |     const terms = page.locator('#terms');
+  82  | 
+  83  | 
+  84  | 
+  85  |     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+  86  |     console.log(await page.title()); // get title - assersion
+  87  |     await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy");
+  88  |     
+  89  |     // Enter invalid data
+  90  |     await username.fill("rahulshettyacademy");
+  91  |     await password.fill("Learning@830$3mK");
+  92  |     await radioBtn.nth(1).click();
+  93  |     const isChecked = await radioBtn.nth(1).isChecked();
+  94  |     if (isChecked) {
+  95  |         console.log("The checkbox is checked.");
+  96  |     } else {
+  97  |         console.log("The checkbox is not checked.");
+  98  |     }
+  99  |     
+  100 |     console.log(await okayBtn.click());
+  101 |     await expect(bodymsg).toContainText('You will be limited to only fewer functionalities of the app. Proceed?');
+  102 |     await dropdown.selectOption("consult");  //select 
+  103 |     await terms.click();
+  104 | 
+  105 |     await signinBtn2.click();
+  106 |     console.log(await warningMessage_locator.textContent());//print the warning 
+  107 |     await expect(warningMessage_locator).toContainText('Incorrect');   //asserstion 
+  108 | 
+  109 | });
+  110 | 
+  111 | test('child window handling', async({browser})=>
+  112 | {
+  113 |     const context = await browser.newContext();
+  114 |     const page = await context.newPage();
+  115 |     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+  116 |     const documentLink = page.locator('[class="blinkingText"]');
+  117 |     const username = page.locator('#username');
+  118 | 
+  119 |     //method to listen to any page gets opened, pending, rejected, fulfilled
+  120 |     const [newPage] = await Promise.all
+  121 |     (
+  122 |     [context.waitForEvent('page'), 
+  123 |     await documentLink.nth(0).click(),]  
+  124 |     )
+  125 | 
+  126 |    const text = await newPage.locator('[class="im-para red"]').textContent();
+  127 |    const arrayText = text.split("@")
+  128 |    const domain = arrayText[1].split(" ")[0]
+  129 |    // console.log(domain);
+  130 |    await page.locator("#username").fill(domain);
+  131 |   // console.log(await page.locator("#username").textContent()); // textContent will show the locator text when it is present in the DOM like username/password 
+  132 |   console.log(await page.locator("#username").inputValue()); 
+  133 |     // const massage = newPage.locator('[class="im-para red"]');
+  134 |     // console.log(await massage.textContent());
+  135 | });
+  136 | 
+```

@@ -71,7 +71,7 @@ test('Login with invalid data', async ({page})=>
 
     const username = page.locator('#username');
     const password = page.locator('#password');
-    const signinBtn = page.locator('#signInBtn');
+    const signinBtn2 = page.getByRole('button', { name: 'Sign In' });
     const warningMessage_locator = page.locator("[style*='block']");
     const iphoneLocator = page.locator('.card-body a');
     const dropdown = page.locator('select.form-control'); //select 
@@ -100,9 +100,14 @@ test('Login with invalid data', async ({page})=>
     console.log(await okayBtn.click());
     await expect(bodymsg).toContainText('You will be limited to only fewer functionalities of the app. Proceed?');
     await dropdown.selectOption("consult");  //select 
+    
+    console.log("Terms count:", await terms.count());
+    console.log("Terms visible:", await terms.isVisible());
+    console.log("Terms enabled:", await terms.isEnabled());
+
     await terms.click();
 
-    await signinBtn.click();
+    await signinBtn2.click();
     console.log(await warningMessage_locator.textContent());//print the warning 
     await expect(warningMessage_locator).toContainText('Incorrect');   //asserstion 
 
@@ -130,8 +135,6 @@ test('child window handling', async({browser})=>
    await page.locator("#username").fill(domain);
   // console.log(await page.locator("#username").textContent()); // textContent will show the locator text when it is present in the DOM like username/password 
   console.log(await page.locator("#username").inputValue()); 
-
-   await page.pause();
     // const massage = newPage.locator('[class="im-para red"]');
     // console.log(await massage.textContent());
 });
