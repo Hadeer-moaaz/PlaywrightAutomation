@@ -38,6 +38,8 @@ class Checkout {
     async searchCountryAndSelect(countryCode) {
         await this.selectCountry.pressSequentially(countryCode, { delay: 150 });
         await this.countryText.click();
+        await this.page.getByPlaceholder("Select Country").pressSequentially(countryCode, { delay: 150 });
+        await this.page.getByRole("button", {name: "Egypt"}).click();
     }
 
     async applyCoupon(couponCode) {
